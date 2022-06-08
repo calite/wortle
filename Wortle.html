@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./arrayPalabrasIniciales.js"></script>
+    <script src="./Wortle.js"></script>
+    <link rel="stylesheet" href="./Wortle.css">
+    <link rel="shortcut icon" href="fotos/letter-w.png" type="image/x-icon">
+    <title>Wortle - Una copia del juego de palabra diario</title>
+</head>
+
+<body>
+    <nav class="menu">
+        <div onclick="mostrarReglas()"><img src="fotos/question.png" alt="dudas"></div>
+        <div>WORTLE</div>
+        <div onclick="sinHacer()"><img src="fotos/stats.png" alt="estadisticas"></div>
+        <div onclick="sinHacer()"><img src="fotos/preference.png" alt="opciones"></div>
+    </nav>
+    <main>
+        <section>
+            <article class="tablero">
+                <div id="intento1">
+                    <button id="11"></button>
+                    <button id="12"></button>
+                    <button id="13"></button>
+                    <button id="14"></button>
+                    <button id="15"></button>
+                </div>
+                <div id="intento2">
+                    <button id="21"></button>
+                    <button id="22"></button>
+                    <button id="23"></button>
+                    <button id="24"></button>
+                    <button id="25"></button>
+                </div>
+                <div id="intento3">
+                    <button id="31"></button>
+                    <button id="32"></button>
+                    <button id="33"></button>
+                    <button id="34"></button>
+                    <button id="35"></button>
+                </div>
+                <div id="intento4">
+                    <button id="41"></button>
+                    <button id="42"></button>
+                    <button id="43"></button>
+                    <button id="44"></button>
+                    <button id="45"></button>
+                </div>
+                <div id="intento5">
+                    <button id="51"></button>
+                    <button id="52"></button>
+                    <button id="53"></button>
+                    <button id="54"></button>
+                    <button id="55"></button>
+                </div>
+                <div>
+                    <button id="61"></button>
+                    <button id="62"></button>
+                    <button id="63"></button>
+                    <button id="64"></button>
+                    <button id="65"></button>
+                </div>
+            </article>
+
+            <article class="teclado">
+                <div>
+                    <button onclick="selectLetra('Q')" id="Q">Q</button>
+                    <button onclick="selectLetra('W')" id="W">W</button>
+                    <button onclick="selectLetra('E')" id="E">E</button>
+                    <button onclick="selectLetra('R')" id="R">R</button>
+                    <button onclick="selectLetra('T')" id="T">T</button>
+                    <button onclick="selectLetra('Y')" id="Y">Y</button>
+                    <button onclick="selectLetra('U')" id="U">U</button>
+                    <button onclick="selectLetra('I')" id="I">I</button>
+                    <button onclick="selectLetra('O')" id="O">O</button>
+                    <button onclick="selectLetra('P')" id="P">P</button>
+                </div>
+                <div>
+                    <button onclick="selectLetra('A')" id="A">A</button>
+                    <button onclick="selectLetra('S')" id="S">S</button>
+                    <button onclick="selectLetra('D')" id="D">D</button>
+                    <button onclick="selectLetra('F')" id="F">F</button>
+                    <button onclick="selectLetra('G')" id="G">G</button>
+                    <button onclick="selectLetra('H')" id="H">H</button>
+                    <button onclick="selectLetra('J')" id="J">J</button>
+                    <button onclick="selectLetra('K')" id="K">K</button>
+                    <button onclick="selectLetra('L')" id="L">L</button>
+                    <button onclick="selectLetra('Ñ')" id="Ñ">Ñ</button>
+                </div>
+                <div>
+                    <button colspan="2" onclick="intento()">ENVIAR</button>
+                    <button onclick="selectLetra('Z')" id="Z">Z</button>
+                    <button onclick="selectLetra('X')" id="X">X</button>
+                    <button onclick="selectLetra('C')" id="C">C</button>
+                    <button onclick="selectLetra('V')" id="V">V</button>
+                    <button onclick="selectLetra('B')" id="B">B</button>
+                    <button onclick="selectLetra('N')" id="N">N</button>
+                    <button onclick="selectLetra('M')" id="M">M</button>
+                    <button onclick="borrarLetra()"><img src="./fotos/delete.png" alt="del"></button>
+                </div>
+            </article>
+            <article id="fondoReglas">
+                <div id="reglas">
+                    <button class="cerrarOpciones" onclick="cerrarReglas()"><b>X</b></button>
+                    <h2>Cómo jugar</h2>
+                    <p>Adivina la palabra oculta en seis intentos.</p>
+                    <p>Cada intento debe ser una palabra válida de 5 letras.</p>
+                    <p>Después de cada intento el color de las letras cambia para</p>
+                    <p>mostrar qué tan cerca estás de acertar la palabra.</p>
+                    <h3>Ejemplos</h3>
+                    <div>
+                        <button id="verde">R</button>
+                        <button>U</button>
+                        <button>B</button>
+                        <button>I</button>
+                        <button>A</button>
+                    </div>
+                    <p>La leetra <b>R</b> está en la palabra y en la posición correcta.</p>
+                    <div>
+                        <button>V</button>
+                        <button>O</button>
+                        <button id="amarillo">C</button>
+                        <button>A</button>
+                        <button>L</button>
+                        <p>La letra <b>C</b> está en la palabra pero en la posición incorrecta.</p>
+                        <button>C</button>
+                        <button>A</button>
+                        <button>N</button>
+                        <button>T</button>
+                        <button id="gris">O</button>
+                        <p>La letra <b>O</b> no está en la palabra.</p>
+                        <p>Puede haber letras repetidas y en ese caso las pistas son</p>
+                        <p>independientes para cada letra y tienen prioridad.</p>
+                    </div>
+                </div>
+            </article>
+            <article id="palabraNoExistente">
+                <p>La palabra no está en la lista</p>
+            </article>
+            <article id="hasGanado">
+                <p>has ganado!</p>
+            </article>
+            <article id="hasPerdido">
+                <p>vaya, has perdido!</p>
+            </article>
+            <article id="cuentaAtras">
+                <p id="contadorCuentaAtras"></p>
+            </article>
+        </section>
+        <aside class="intentos">
+            <h2>Intentos</h2>
+            <p id="texto1"> </p>
+            <p id="texto2"> </p>
+            <p id="texto3"> </p>
+            <p id="texto4"> </p>
+            <p id="texto5"> </p>
+            <p id="texto6"> </p>
+        </aside>
+    </main>
+</body>
+
+</html>
